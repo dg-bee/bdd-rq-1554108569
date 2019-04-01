@@ -1,0 +1,193 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1554108621.200397,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554108621.2012727,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1554108621.9931095,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554108623.6220458,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/******/bdd-rq-1554108569.git\" @ \"master\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  16.791 [id=36]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+Stage "CI Build and push snapshot" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+[Pipeline] git
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/******/bdd-rq-1554108569.git # timeout=10
+Fetching upstream changes from https://github.com/******/bdd-rq-1554108569.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/******/bdd-rq-1554108569.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 69f4fc072575e3af223f190fa68b238b8ee931fc (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 69f4fc072575e3af223f190fa68b238b8ee931fc
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 69f4fc072575e3af223f190fa68b238b8ee931fc
+Commit message: "Draft create"
+First time build. Skipping changelog.
+[Pipeline] sh
++ **-release-version
++ echo 0.0.1
+[Pipeline] sh
++ cat VERSION
++ ** step tag --version 0.0.1
+Tag v0.0.1 created and pushed to remote origin
+[Pipeline] sh
++ npm install
+npm WARN notice [SECURITY] webpack-dev-server has the following vulnerability: 1 high. Go here for more details: https://nodesecurity.io/advisories?search=webpack-dev-server&version=2.9.4 - Run `npm i npm@latest -g` to upgrade your npm version, and then `npm audit` to get more info.
+npm WARN deprecated browserslist@2.11.3: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+npm WARN deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN ajv-keywords@3.4.0 requires a peer of ajv@^6.9.1 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.7 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.7: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 1300 packages in 32.692s
+[Pipeline] sh
++ CI=true DISPLAY=:99 npm test
+
+> react-quickstart@0.1.0 test /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job
+> react-scripts test --env=jsdom
+
+ PASS  src/components/App.test.js
+  ✓ renders without crashing (27ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.358s
+Ran all test suites.
+[Pipeline] sh
++ cat VERSION
++ export VERSION=0.0.1
++ skaffold build -f skaffold.yaml
+time="2019-04-01T08:51:35Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta6)"
+Generating Tag for [changeme]...
+Starting build...
+Building [changeme]...
+Sending build context to Docker daemon  540.2kBSending build context to Docker daemon  5.923MBSending build context to Docker daemon  10.76MBSending build context to Docker daemon  17.74MBSending build context to Docker daemon  25.27MBSending build context to Docker daemon  28.99MBSending build context to Docker daemon  31.66MBSending build context to Docker daemon  35.91MBSending build context to Docker daemon  40.17MBSending build context to Docker daemon  42.27MBSending build context to Docker daemon  47.63MBSending build context to Docker daemon  52.95MBSending build context to Docker daemon  57.22MBSending build context to Docker daemon  62.04MBSending build context to Docker daemon  66.28MBSending build context to Docker daemon  69.48MBSending build context to Docker daemon  75.38MBSending build context to Docker daemon  83.94MBSending build context to Docker daemon  94.18MBSending build context to Docker daemon  105.4MBSending build context to Docker daemon  115.6MBSending build context to Docker daemon  123.7MBSending build context to Docker daemon  127.4MBSending build context to Docker daemon  133.8MBSending build context to Docker daemon  140.7MBSending build context to Docker daemon  145.1MB
+Step 1/6 : FROM node:9-slim
+ ---> e20bb4abe4ee
+Step 2/6 : ENV PORT 8080
+ ---> Using cache
+ ---> c04fe60bcd3d
+Step 3/6 : EXPOSE 8080
+ ---> Using cache
+ ---> 0b6c58d87503
+Step 4/6 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> 4bea3cdf17f9
+Step 5/6 : COPY . .
+ ---> fa765dc304df
+Step 6/6 : CMD npm start
+ ---> Running in 9e381f3e8f3a
+ ---> e5998b39e505
+Successfully built e5998b39e505
+The push refers to a repository [10.31.240.243:5000/******/bdd-rq-1554108569]
+80f060092b67: Preparing
+d528653b5166: Preparing
+e16c226cf2a8: Preparing
+7fd597d009e4: Preparing
+7c6ab5fb7059: Preparing
+ed271eac23e9: Preparing
+156ff16f37e4: Preparing
+ed271eac23e9: Waiting
+7c6ab5fb7059: Pushed
+d528653b5166: Pushed
+ed271eac23e9: Pushed
+e16c226cf2a8: Pushed
+156ff16f37e4: Pushed
+7fd597d009e4: Pushed
+80f060092b67: Pushed
+0.0.1: digest: sha256:a919ede2757ebdf74aee32d51425094523b9e06dc415fc17e9d76f4bbcfe6c09 size: 1789
+Build complete in 33.102297s
+Starting test...
+Test complete in 6.985µs
+changeme -> 10.31.240.243:5000/******/bdd-rq-1554108569:0.0.1@sha256:a919ede2757ebdf74aee32d51425094523b9e06dc415fc17e9d76f4bbcfe6c09
+There is a new version (0.26.0) of Skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+[Pipeline] sh
++ cat VERSION
++ ** step post build --image 10.31.240.243:5000/******/bdd-rq-1554108569:0.0.1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+[Pipeline] dir
+Running in /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job/charts/bdd-rq-1554108569
+[Pipeline] {
+[Pipeline] sh
++ cat ../../VERSION
++ ** step changelog --batch-mode --version v0.0.1
+Converted /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job/charts/bdd-rq-1554108569 to an unshallow repository
+Generating change log from git ref 69f4fc072575e3af223f190fa68b238b8ee931fc => 5b6fb49a30005bbb385c8ba05504366c9c79b8ba
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Finding issues in commit messages using git format
+No release found for ******/bdd-rq-1554108569 and tag v0.0.1 so creating a new release
+Updated the release information at https://github.com/******/bdd-rq-1554108569/releases/tag/v0.0.1
+generated: /tmp/jenkinsTests.tmp/jenkins7936122404861961918test/workspace/job/charts/bdd-rq-1554108569/templates/release.yaml
+Created Release bdd-rq-1554108569-0-0-1 resource in namespace **
+Updating PipelineActivity ******-bdd-rq-1554108569-master-1 with version 0.0.1
+Updated PipelineActivities ******-bdd-rq-1554108569-master-1 with release notes URL: https://github.com/******/bdd-rq-1554108569/releases/tag/v0.0.1
+[Pipeline] sh
++ ** step helm release
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file bdd-rq-1554108569-0.0.1.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+[Pipeline] sh
++ cat ../../VERSION
++ ** promote -b --all-auto --timeout 1h --version 0.0.1
+prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+Promoting app bdd-rq-1554108569 version 0.0.1 to namespace **-staging
+Created Pull Request: https://github.com/******/environment-maskflint-staging/pull/1
+
+Pull Request https://github.com/******/environment-maskflint-staging/pull/1 is merged at sha ba252cfe1519cc16c441942381b005c32447057c
+Pull Request merged but we are not waiting for the update pipeline to complete!
+Could not find the service URL in namespace **-staging for names bdd-rq-1554108569, **-bdd-rq-1554108569, **-staging-bdd-rq-1554108569
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
