@@ -1,0 +1,179 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1554109474.4264746,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554109474.4269688,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1554109475.5345137,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554109476.602058,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/******/bdd-nh-1554108569.git\" @ \"master\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  14.026 [id=30]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins906267741806859148test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+Stage "CI Build and push snapshot" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+[Pipeline] git
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/******/bdd-nh-1554108569.git # timeout=10
+Fetching upstream changes from https://github.com/******/bdd-nh-1554108569.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/******/bdd-nh-1554108569.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 1cd006396b0a9d84dfcafa46708ca19e85991722 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 1cd006396b0a9d84dfcafa46708ca19e85991722
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 1cd006396b0a9d84dfcafa46708ca19e85991722
+Commit message: "Draft create"
+First time build. Skipping changelog.
+[Pipeline] sh
++ **-release-version
++ echo 0.0.1
+[Pipeline] sh
++ cat VERSION
++ ** step tag --version 0.0.1
+Tag v0.0.1 created and pushed to remote origin
+[Pipeline] sh
++ npm install
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN REPLACE_ME@1.0.0 No repository field.
+npm WARN REPLACE_ME@1.0.0 No license field.
+
+up to date in 0.082s
+[Pipeline] sh
++ CI=true DISPLAY=:99 npm test
+
+> REPLACE_ME@1.0.0 test /tmp/jenkinsTests.tmp/jenkins906267741806859148test/workspace/job
+> echo "no test specified" && exit 0
+
+no test specified
+[Pipeline] sh
++ cat VERSION
++ export VERSION=0.0.1
++ skaffold build -f skaffold.yaml
+time="2019-04-01T09:05:09Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta6)"
+Generating Tag for [changeme]...
+Starting build...
+Building [changeme]...
+Sending build context to Docker daemon  107.5kB
+Step 1/6 : FROM node:9-slim
+ ---> e20bb4abe4ee
+Step 2/6 : ENV PORT 8080
+ ---> Using cache
+ ---> 86134f6f1908
+Step 3/6 : EXPOSE 8080
+ ---> Using cache
+ ---> a7c315684e3f
+Step 4/6 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> b0e674cb091c
+Step 5/6 : COPY . .
+ ---> c2185862eaa8
+Step 6/6 : CMD npm start
+ ---> Running in 3b66f243ea08
+ ---> 0ea05eba861b
+Successfully built 0ea05eba861b
+The push refers to a repository [10.31.240.243:5000/******/bdd-nh-1554108569]
+f83da3850903: Preparing
+6dd4366f0f46: Preparing
+e16c226cf2a8: Preparing
+7fd597d009e4: Preparing
+7c6ab5fb7059: Preparing
+ed271eac23e9: Preparing
+156ff16f37e4: Preparing
+ed271eac23e9: Waiting
+156ff16f37e4: Waiting
+7fd597d009e4: Mounted from ******/bdd-rq-1554108569
+e16c226cf2a8: Mounted from ******/bdd-rq-1554108569
+7c6ab5fb7059: Mounted from ******/bdd-rq-1554108569
+6dd4366f0f46: Mounted from ******/bdd-rq-1554108569
+ed271eac23e9: Mounted from ******/bdd-rq-1554108569
+156ff16f37e4: Mounted from ******/bdd-rq-1554108569
+f83da3850903: Pushed
+0.0.1: digest: sha256:c3fb6a1a592e808eca6a828bac55da86603fcce95129a76f2f2951d1886ba454 size: 1786
+Build complete in 1.282674276s
+Starting test...
+Test complete in 18.592µs
+changeme -> 10.31.240.243:5000/******/bdd-nh-1554108569:0.0.1@sha256:c3fb6a1a592e808eca6a828bac55da86603fcce95129a76f2f2951d1886ba454
+There is a new version (0.26.0) of Skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+[Pipeline] sh
++ cat VERSION
++ ** step post build --image 10.31.240.243:5000/******/bdd-nh-1554108569:0.0.1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+[Pipeline] dir
+Running in /tmp/jenkinsTests.tmp/jenkins906267741806859148test/workspace/job/charts/bdd-nh-1554108569
+[Pipeline] {
+[Pipeline] sh
++ cat ../../VERSION
++ ** step changelog --batch-mode --version v0.0.1
+Converted /tmp/jenkinsTests.tmp/jenkins906267741806859148test/workspace/job/charts/bdd-nh-1554108569 to an unshallow repository
+Generating change log from git ref 1cd006396b0a9d84dfcafa46708ca19e85991722 => 1906b51223ac01e41c5e917565297c8f2c240cfe
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Finding issues in commit messages using git format
+No release found for ******/bdd-nh-1554108569 and tag v0.0.1 so creating a new release
+Updated the release information at https://github.com/******/bdd-nh-1554108569/releases/tag/v0.0.1
+generated: /tmp/jenkinsTests.tmp/jenkins906267741806859148test/workspace/job/charts/bdd-nh-1554108569/templates/release.yaml
+Created Release bdd-nh-1554108569-0-0-1 resource in namespace **
+Updating PipelineActivity ******-bdd-nh-1554108569-master-1 with version 0.0.1
+Updated PipelineActivities ******-bdd-nh-1554108569-master-1 with release notes URL: https://github.com/******/bdd-nh-1554108569/releases/tag/v0.0.1
+[Pipeline] sh
++ ** step helm release
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file bdd-nh-1554108569-0.0.1.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+[Pipeline] sh
++ cat ../../VERSION
++ ** promote -b --all-auto --timeout 1h --version 0.0.1
+prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+Promoting app bdd-nh-1554108569 version 0.0.1 to namespace **-staging
+Created Pull Request: https://github.com/******/environment-maskflint-staging/pull/3
+
+Failed to merge the Pull Request https://github.com/******/environment-maskflint-staging/pull/3 due to PUT https://api.github.com/repos/******/environment-maskflint-staging/pulls/3/merge: 405 Pull Request is not mergeable [] maybe I don't have karma?
+Pull Request https://github.com/******/environment-maskflint-staging/pull/3 is merged at sha a7609063b62f0a649666a523f4224199ed0387a7
+Pull Request merged but we are not waiting for the update pipeline to complete!
+Could not find the service URL in namespace **-staging for names bdd-nh-1554108569, **-bdd-nh-1554108569, **-staging-bdd-nh-1554108569
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
