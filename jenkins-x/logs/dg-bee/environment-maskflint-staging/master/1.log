@@ -1,0 +1,20 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1554108789.4794247,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554108789.4799747,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1554108790.8187675,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554108791.899977,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/******/environment-maskflint-staging.git\" @ \"ba252cfe1519cc16c441942381b005c32447057c\" in path \"/workspace\""}
+Step: build-step-apply:
+
+Modified file /workspace/env/Chart.yaml to set the chart to version 1
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+Applying helm chart at . as release name **-staging to namespace **-staging
+Ignoring templates/.gitignore
+Wrote chart values.yaml values.yaml generated from directory tree
+Using values files: values.yaml
+Applying chart overrides
