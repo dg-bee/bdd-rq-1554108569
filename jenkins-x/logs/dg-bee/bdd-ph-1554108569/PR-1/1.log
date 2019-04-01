@@ -1,0 +1,188 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1554109337.5815728,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554109337.582175,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1554109338.565126,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554109339.9390576,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/******/bdd-ph-1554108569.git\" @ \"a9f11a5b43208bcfb3188852fd58ac2ae156596f\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  12.380 [id=35]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins8718587075750476331test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ python -m unittest
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+OK
+[Pipeline] sh
++ export VERSION=0.0.0-SNAPSHOT-PR-1-1
++ skaffold build -f skaffold.yaml
+time="2019-04-01T09:02:49Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta6)"
+Generating Tag for [changeme]...
+Starting build...
+Building [changeme]...
+Sending build context to Docker daemon  527.3kBSending build context to Docker daemon  530.9kB
+Step 1/6 : FROM python:onbuild
+onbuild: Pulling from library/python
+1c7fe136a31e: Already exists
+ece825d3308b: Already exists
+06854774e2f3: Already exists
+f0db43b9b8da: Already exists
+2d21c767035c: Already exists
+e10b68fb77e6: Already exists
+e2c0fb34dff3: Already exists
+e96bc319bce0: Already exists
+490280dbcfb7: Already exists
+Digest: sha256:76df62c122c910751d8cd3101f8e3da39efd4ee828686b7ff0b5a5b1d967553f
+Status: Downloaded newer image for python:onbuild
+[91m# Executing 3 build triggers...
+[0mStep 1/1 : COPY requirements.txt /usr/src/app/
+Step 1/1 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Running in 507faf5d7379
+[91mYou are using pip version 10.0.1, however version 19.0.3 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+[0mStep 1/1 : COPY . /usr/src/app
+ ---> cae2b8150703
+Step 2/6 : COPY requirements.txt .
+ ---> 9335f5dfce29
+Step 3/6 : ENV PORT 8080
+ ---> Running in 097fd39f60ab
+ ---> 9eaa94b9ff67
+Step 4/6 : EXPOSE 8080
+ ---> Running in 38ab6a3939a8
+ ---> 490fd9a976b3
+Step 5/6 : ENTRYPOINT python
+ ---> Running in 27f0c8873401
+ ---> 2582b3726b52
+Step 6/6 : CMD app.py
+ ---> Running in 48736d804661
+ ---> e1462297abc3
+Successfully built e1462297abc3
+The push refers to a repository [10.31.240.243:5000/******/bdd-ph-1554108569]
+82043eeb02d2: Preparing
+de3363b0872d: Preparing
+be56425f591c: Preparing
+cb76cbb1aee6: Preparing
+29778035860f: Preparing
+fc88d2431f4d: Preparing
+1dc1b82fa010: Preparing
+09e3fd9cf357: Preparing
+138d1921c15b: Preparing
+d714f65bc280: Preparing
+fd6060e25706: Preparing
+d7ed640784f1: Preparing
+1618a71a1198: Preparing
+fc88d2431f4d: Waiting
+1dc1b82fa010: Waiting
+09e3fd9cf357: Waiting
+138d1921c15b: Waiting
+d714f65bc280: Waiting
+1618a71a1198: Waiting
+fd6060e25706: Waiting
+d7ed640784f1: Waiting
+82043eeb02d2: Pushed
+29778035860f: Pushed
+cb76cbb1aee6: Pushed
+09e3fd9cf357: Layer already exists
+de3363b0872d: Pushed
+d714f65bc280: Layer already exists
+1dc1b82fa010: Pushed
+fd6060e25706: Layer already exists
+d7ed640784f1: Layer already exists
+1618a71a1198: Layer already exists
+fc88d2431f4d: Pushed
+be56425f591c: Pushed
+138d1921c15b: Pushed
+0.0.0-SNAPSHOT-PR-1-1: digest: sha256:d53c812c1eea36545c9fb3c0bbd819ef21be4a54e7062cca2c0289e8e19d4de9 size: 3049
+Build complete in 10.133000024s
+Starting test...
+Test complete in 7.042µs
+changeme -> 10.31.240.243:5000/******/bdd-ph-1554108569:0.0.0-SNAPSHOT-PR-1-1@sha256:d53c812c1eea36545c9fb3c0bbd819ef21be4a54e7062cca2c0289e8e19d4de9
+There is a new version (0.26.0) of Skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+[Pipeline] sh
++ ** step post build --image 10.31.240.243:5000/******/bdd-ph-1554108569:0.0.0-SNAPSHOT-PR-1-1
+[Pipeline] dir
+Running in /tmp/jenkinsTests.tmp/jenkins8718587075750476331test/workspace/job/charts/preview
+[Pipeline] {
+[Pipeline] sh
++ make preview
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-1-1/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-1-1/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: 10.31.240.243:5000\/******\/bdd-ph-1554108569|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-1-1/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-1-1" >> requirements.yaml
+** step helm build
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+[Pipeline] sh
++ ** preview --app bdd-ph-1554108569 --dir ../..
+Creating a preview
+Commit author email is empty for: a9f11a5b43208bcfb3188852fd58ac2ae156596f
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins8718587075750476331test/workspace/job/
+Created environment ******-bdd-ph-1554108569-pr-1
+Namespace **-******-bdd-ph-1554108569-pr-1 created 
+ expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 35.233.66.91.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: 10.31.240.243:5000/******/bdd-ph-1554108569
+    tag: 0.0.0-SNAPSHOT-PR-1-1
+Failed to update PipelineActivities ******-bdd-ph-1554108569-pr-1-1: the namespace of the object (**-******-bdd-ph-1554108569-pr-1) does not match the namespace on the request (**)
+Preview application is now available at: http://bdd-ph-1554108569.**-******-bdd-ph-1554108569-pr-1.35.233.66.91.nip.io
+
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+Stage "Build Release" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+Stage "Promote to Environments" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
